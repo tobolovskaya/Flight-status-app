@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import { fetchFlightStatus } from './api/aviationAPI';
+import { FiLoader } from 'react-icons/fi';
+
 
 function App() {
   const [flightNumberInput, setFlightNumberInput] = useState('');
@@ -52,7 +54,12 @@ function App() {
         <button onClick={handleSearch}>Знайти Рейс</button>
       </div>
 
-      {isLoading && <p className="loading">Завантаження...</p>}
+      {isLoading && (
+  <div className="spinner">
+    <FiLoader className="spin" size={32} />
+  </div>
+)}
+
       {searchMessage && <p className="message">{searchMessage}</p>}
 
       {foundFlight && (

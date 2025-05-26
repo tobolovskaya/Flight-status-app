@@ -142,4 +142,21 @@ h1 {
   100% { opacity: 0.3; }
 }
 
+.spinner {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.spin {
+  animation: spin 1s linear infinite;
+  color: #007a33;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+
 
