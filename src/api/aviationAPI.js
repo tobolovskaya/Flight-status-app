@@ -1,4 +1,4 @@
-const API_KEY = import.meta.env.VITE_AVIATION_KEY; // розмісти ключ у .env
+const API_KEY = import.meta.env.VITE_API_KEY; // розмісти ключ у .env
 
 export const fetchFlightStatus = async (flightNumber, date) => {
   try {
