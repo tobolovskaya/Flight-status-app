@@ -1,35 +1,38 @@
 import { useState } from 'react';
-import { flights } from './flightsData';
 import './App.css';
 import { fetchFlightStatus } from './api/aviationAPI';
-
 
 function App() {
   const [flightNumberInput, setFlightNumberInput] = useState('');
   const [dateInput, setDateInput] = useState(() => {
     const today = new Date();
-    return today.toISOString().split('T')[0]; // формат YYYY-MM-DD
+    return today.toISOString().split('T')[0]; // YYYY-MM-DD
   });
   const [foundFlight, setFoundFlight] = useState(null);
   const [searchMessage, setSearchMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSearch = async () => {
-  setFoundFlight(null);
-  setSearchMessage('');
+    setFoundFlight(null);
+    setSearchMessage('');
+    setIsLoading(true);
 
-  if (!flightNumberInput) {
-    setSearchMessage('Будь ласка, введіть номер рейсу.');
-    return;
-  }
+    if (!flightNumberInput) {
+      setSearchMessage('Будь ласка, введіть номер рейсу.');
+      setIsLoading(false);
+      return;
+    }
 
-  const result = await fetchFlightStatus(flightNumberInput, dateInput);
+    const result = await fetchFlightStatus(flightNumberInput, dateInput);
 
-  if (result.found) {
-    setFoundFlight(result.flight);
-  } else {
-    setSearchMessage(result.reason);
-  }
-};
+    if (result.found) {
+      setFoundFlight(result.flight);
+    } else {
+      setSearchMessage(result.reason);
+    }
+
+    setIsLoading(false);
+  };
 
   return (
     <div className="container">
@@ -49,17 +52,18 @@ function App() {
         <button onClick={handleSearch}>Знайти Рейс</button>
       </div>
 
+      {isLoading && <p className="loading">Завантаження...</p>}
       {searchMessage && <p className="message">{searchMessage}</p>}
-      {foundFlight && (
-  <div className="flight-info animate" key={foundFlight.flightNumber + foundFlight.date}>
-    <h2>Інформація про рейс: {foundFlight.flightNumber}</h2>
-    <p><strong>Статус:</strong> <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>{foundFlight.status}</span></p>
-    <p><strong>Призначення:</strong> {foundFlight.destination}</p>
-    <p><strong>Вихід (Gate):</strong> {foundFlight.gate}</p>
-    <p><strong>Дата:</strong> {foundFlight.date}</p>
-  </div>
-)}
 
+      {foundFlight && (
+        <div className="flight-info animate" key={foundFlight.flightNumber + foundFlight.date}>
+          <h2>Інформація про рейс: {foundFlight.flightNumber}</h2>
+          <p><strong>Статус:</strong> <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>{foundFlight.status}</span></p>
+          <p><strong>Призначення:</strong> {foundFlight.destination}</p>
+          <p><strong>Вихід (Gate):</strong> {foundFlight.gate}</p>
+          <p><strong>Дата:</strong> {foundFlight.date}</p>
+        </div>
+      )}
     </div>
   );
 }
