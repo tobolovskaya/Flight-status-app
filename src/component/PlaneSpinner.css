@@ -1,0 +1,31 @@
+.plane-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.flight-path {
+  width: 360px;
+  height: 100px;
+}
+
+.plane {
+  font-size: 20px;
+  fill: #007a33;
+  animation: fly 4s linear infinite;
+}
+
+.plane.delay {
+  animation-delay: 2s;
+}
+
+@keyframes fly {
+  0% {
+    startOffset: 0%;
+  }
+  100% {
+    startOffset: 100%;
+  }
+}
+

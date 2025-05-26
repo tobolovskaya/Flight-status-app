@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import { fetchFlightStatus } from './api/aviationAPI';
-import { FiLoader } from 'react-icons/fi';
+import { FaPlane } from 'react-icons/fa';
+import PlaneSpinner from './component/PlaneSpinner';
 
 
 function App() {
@@ -54,11 +55,7 @@ function App() {
         <button onClick={handleSearch}>Знайти Рейс</button>
       </div>
 
-      {isLoading && (
-  <div className="spinner">
-    <FiLoader className="spin" size={32} />
-  </div>
-)}
+      {isLoading && <PlaneSpinner />}
 
       {searchMessage && <p className="message">{searchMessage}</p>}
 
