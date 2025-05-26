@@ -103,6 +103,21 @@ h1 {
   font-weight: bold;
 }
 
+/* Початково .flight-info без анімації */
+.flight-info {
+  margin-top: 25px;
+  padding: 20px;
+  border: 1px solid #e3e3e3;
+  border-radius: 6px;
+  text-align: left;
+  background-color: #f9f9f9;
+}
+
+/* Анімація */
+.flight-info.animate {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -112,18 +127,5 @@ h1 {
     opacity: 1;
     transform: translateY(0);
   }
-}
-
-.flight-info {
-  margin-top: 25px;
-  padding: 20px;
-  border: 1px solid #e3e3e3;
-  border-radius: 6px;
-  text-align: left;
-  background-color: #f9f9f9;
-
-  /* Анімація */
-  animation: fadeInUp 0.6s ease forwards;
-  opacity: 0; /* стартовий стан, буде анімовано до 1 */
 }
 
