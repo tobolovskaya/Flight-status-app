@@ -72,19 +72,15 @@ function App() {
 
       {searchMessage && <p className="message">{searchMessage}</p>}
       {foundFlight && (
-        <div className="flight-info">
-          <h2>Інформація про рейс: {foundFlight.flightNumber}</h2>
-          <p>
-            <strong>Статус:</strong>{' '}
-            <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>
-              {foundFlight.status}
-            </span>
-          </p>
-          <p><strong>Призначення:</strong> {foundFlight.destination}</p>
-          <p><strong>Вихід (Gate):</strong> {foundFlight.gate}</p>
-          <p><strong>Дата:</strong> {foundFlight.date}</p>
-        </div>
-      )}
+  <div className="flight-info" key={foundFlight.flightNumber + foundFlight.date}>
+    <h2>Інформація про рейс: {foundFlight.flightNumber}</h2>
+    <p><strong>Статус:</strong> <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>{foundFlight.status}</span></p>
+    <p><strong>Призначення:</strong> {foundFlight.destination}</p>
+    <p><strong>Вихід (Gate):</strong> {foundFlight.gate}</p>
+    <p><strong>Дата:</strong> {foundFlight.date}</p>
+  </div>
+)}
+
     </div>
   );
 }
