@@ -1,10 +1,9 @@
-/* === MOBILE FIRST === */
-
+/* === Базовий мобільний дизайн === */
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
-  padding: 16px;
+  padding: 20px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -13,19 +12,20 @@ body {
 
 .container {
   background-color: #ffffff;
-  padding: 24px;
+  padding: 20px;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 380px;
+  max-width: 420px;
   box-sizing: border-box;
+  margin: 0 auto;
 }
 
 h1 {
   color: #007a33;
   text-align: center;
-  font-size: 1.6rem;
   margin-bottom: 20px;
+  font-size: 1.5rem;
 }
 
 .lang-buttons {
@@ -36,18 +36,26 @@ h1 {
 }
 
 .lang-buttons img {
-  width: 28px;
-  height: 20px;
+  width: 24px;
+  height: 16px;
   object-fit: cover;
   border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .lang-buttons button {
-  background: transparent;
+  background: white;
   border: none;
   padding: 4px;
   border-radius: 6px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lang-buttons button:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .search-form {
@@ -59,24 +67,25 @@ h1 {
 
 .search-form input,
 .search-form button {
-  padding: 14px;
+  padding: 12px;
   font-size: 1rem;
   border-radius: 8px;
+  box-sizing: border-box;
   width: 100%;
   border: 1px solid #ccc;
-  box-sizing: border-box;
 }
 
 .search-form button {
   background-color: #007a33;
-  color: white;
+  color: #fff;
   border: none;
-  font-weight: bold;
+  cursor: pointer;
   transition: background-color 0.3s ease;
+  font-weight: bold;
 }
 
 .search-form button:hover {
-  background-color: #005c9d;
+  background-color: #005c2f;
 }
 
 .message {
@@ -95,42 +104,82 @@ h1 {
 
 .flight-info h2 {
   margin-top: 0;
-  font-size: 1.2rem;
 }
 
-/* Flight status colors */
+/* Статуси */
 .status-landed { color: #007a33; font-weight: bold; }
 .status-delayed { color: #f0ad4e; font-weight: bold; }
 .status-boarding { color: #0275d8; font-weight: bold; }
 .status-cancelled { color: #d9534f; font-weight: bold; }
 
+/* === react-datepicker стилі === */
+.react-datepicker {
+  font-family: inherit;
+  border: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+}
 
-/* === DESKTOP ≥1440px === */
+.react-datepicker__header {
+  background-color: #007a33;
+  color: white;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.react-datepicker__current-month {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.react-datepicker__navigation--previous,
+.react-datepicker__navigation--next {
+  top: 10px;
+  border-color: #fff;
+}
+
+.react-datepicker__day--selected,
+.react-datepicker__day--keyboard-selected {
+  background-color: #007a33 !important;
+  color: white;
+  border-radius: 6px;
+}
+
+.react-datepicker__day:hover {
+  background-color: #e2f1ea;
+  border-radius: 6px;
+}
+
+.custom-datepicker {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* === Десктопна адаптація === */
 @media (min-width: 1440px) {
-  body {
-    padding: 40px;
-  }
-
   .container {
-    max-width: 500px;
-    padding: 32px;
+    max-width: 540px;
+    padding: 30px;
   }
 
   h1 {
     font-size: 2rem;
   }
 
-  .lang-buttons {
-    justify-content: flex-end;
-  }
-
   .search-form input,
   .search-form button {
     font-size: 1.1rem;
-    padding: 16px;
+    padding: 14px;
   }
 
-  .flight-info h2 {
-    font-size: 1.5rem;
+  .flight-info {
+    font-size: 1.1rem;
+  }
+
+  .lang-buttons {
+    justify-content: flex-end;
   }
 }

@@ -82,12 +82,12 @@ function App() {
           placeholder={t('placeholderFlight')}
         />
         <DatePicker
-          selected={dateInput}
-          onChange={(date) => setDateInput(date)}
-          dateFormat="yyyy-MM-dd"
-          locale={i18n.language}
-          className="custom-datepicker"
-        />
+  selected={new Date(dateInput)}
+  onChange={(date) => setDateInput(date.toISOString().split('T')[0])}
+  dateFormat="yyyy-MM-dd"
+  className="custom-datepicker"
+  calendarStartDay={1}
+/>
         <button onClick={handleSearch}>{t('button')}</button>
       </div>
 
