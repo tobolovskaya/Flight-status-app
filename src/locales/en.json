@@ -1,0 +1,18 @@
+{
+  "title": "Flight Status Checker",
+  "button": "Search Flight",
+  "placeholderFlight": "Flight Number (e.g. WF101)",
+  "flightInfo": "Flight Information",
+  "status": "Status",
+  "destination": "Destination",
+  "gate": "Gate",
+  "date": "Date",
+  "enterNumber": "Please enter a flight number.",
+  "notFound": "Flight {{number}} on date {{date}} not found.",
+  "statusValues": {
+    "landed": "Landed",
+    "delayed": "Delayed",
+    "boarding": "Boarding",
+    "cancelled": "Cancelled"
+  }
+}

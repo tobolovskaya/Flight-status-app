@@ -4,12 +4,11 @@ import { fetchFlightStatus } from './api/aviationAPI';
 import PlaneSpinner from './component/PlaneSpinner';
 import { useTranslation } from 'react-i18next';
 
-
 function App() {
   const [flightNumberInput, setFlightNumberInput] = useState('');
   const [dateInput, setDateInput] = useState(() => {
     const today = new Date();
-    return today.toISOString().split('T')[0]; // YYYY-MM-DD
+    return today.toISOString().split('T')[0];
   });
   const [foundFlight, setFoundFlight] = useState(null);
   const [searchMessage, setSearchMessage] = useState('');
@@ -17,9 +16,8 @@ function App() {
   const { t, i18n } = useTranslation();
 
   const changeLanguage = (lang) => {
-  i18n.changeLanguage(lang);
-};
-
+    i18n.changeLanguage(lang);
+  };
 
   const handleSearch = async () => {
     setFoundFlight(null);
@@ -27,7 +25,7 @@ function App() {
     setIsLoading(true);
 
     if (!flightNumberInput) {
-      setSearchMessage('Будь ласка, введіть номер рейсу.');
+      setSearchMessage(t('enterNumber'));
       setIsLoading(false);
       return;
     }
@@ -37,7 +35,7 @@ function App() {
     if (result.found) {
       setFoundFlight(result.flight);
     } else {
-      setSearchMessage(result.reason);
+      setSearchMessage(t('notFound', { number: flightNumberInput, date: dateInput }));
     }
 
     setIsLoading(false);
@@ -46,10 +44,10 @@ function App() {
   return (
     <div className="container">
       <div className="lang-buttons">
-  <button onClick={() => changeLanguage('ua')}>🇺🇦</button>
-  <button onClick={() => changeLanguage('no')}>🇳🇴</button>
-  <button onClick={() => changeLanguage('en')}>🇬🇧</button>
-</div>
+        <button onClick={() => changeLanguage('no')}>🇳🇴</button>
+        <button onClick={() => changeLanguage('en')}>🇬🇧</button>
+        <button onClick={() => changeLanguage('ua')}>🇺🇦</button>
+      </div>
       <h1>{t('title')}</h1>
       <div className="search-form">
         <input
@@ -72,11 +70,13 @@ function App() {
 
       {foundFlight && (
         <div className="flight-info animate" key={foundFlight.flightNumber + foundFlight.date}>
-          <h2>Інформація про рейс: {foundFlight.flightNumber}</h2>
-          <p><strong>Статус:</strong> <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>{foundFlight.status}</span></p>
-          <p><strong>Призначення:</strong> {foundFlight.destination}</p>
-          <p><strong>Вихід (Gate):</strong> {foundFlight.gate}</p>
-          <p><strong>Дата:</strong> {foundFlight.date}</p>
+          <h2>{t('flightInfo')}: {foundFlight.flightNumber}</h2>
+          <p><strong>{t('status')}:</strong> <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>
+            {t(`statusValues.${foundFlight.status.toLowerCase()}`)}
+          </span></p>
+          <p><strong>{t('destination')}:</strong> {foundFlight.destination}</p>
+          <p><strong>{t('gate')}:</strong> {foundFlight.gate}</p>
+          <p><strong>{t('date')}:</strong> {foundFlight.date}</p>
         </div>
       )}
     </div>

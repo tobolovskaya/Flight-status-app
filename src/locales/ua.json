@@ -1,0 +1,18 @@
+{
+  "title": "Інформатор Статусу Рейсів",
+  "button": "Знайти Рейс",
+  "placeholderFlight": "Номер рейсу (напр. WF101)",
+  "flightInfo": "Інформація про рейс",
+  "status": "Статус",
+  "destination": "Призначення",
+  "gate": "Вихід (Gate)",
+  "date": "Дата",
+  "enterNumber": "Будь ласка, введіть номер рейсу.",
+  "notFound": "Рейс {{number}} на дату {{date}} не знайдено.",
+  "statusValues": {
+    "landed": "Приземлився",
+    "delayed": "Затримується",
+    "boarding": "Посадка",
+    "cancelled": "Скасовано"
+  }
+}

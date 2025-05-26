@@ -1,0 +1,18 @@
+{
+  "title": "Flystatus-sjekker",
+  "button": "Finn fly",
+  "placeholderFlight": "Flynummer (f.eks. WF101)",
+  "flightInfo": "Informasjon om flyvningen",
+  "status": "Status",
+  "destination": "Destinasjon",
+  "gate": "Gate",
+  "date": "Dato",
+  "enterNumber": "Vennligst skriv inn flynummeret.",
+  "notFound": "Flygning {{number}} på datoen {{date}} ble ikke funnet.",
+  "statusValues": {
+    "landed": "Landed",
+    "delayed": "Forsinket",
+    "boarding": "Boarding",
+    "cancelled": "Kansellert"
+  }
+}
