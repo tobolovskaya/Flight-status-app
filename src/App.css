@@ -1,3 +1,5 @@
+/* === MOBILE FIRST === */
+
 body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: #f4f4f4;
@@ -11,19 +13,19 @@ body {
 
 .container {
   background-color: #ffffff;
-  padding: 20px 16px;
-  border-radius: 10px;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   width: 100%;
-  max-width: 100%;
+  max-width: 380px;
   box-sizing: border-box;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
   color: #007a33;
   text-align: center;
-  margin-bottom: 20px;
   font-size: 1.6rem;
+  margin-bottom: 20px;
 }
 
 .lang-buttons {
@@ -34,27 +36,18 @@ h1 {
 }
 
 .lang-buttons img {
-  width: 24px;
-  height: 16px;
+  width: 28px;
+  height: 20px;
   object-fit: cover;
   border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .lang-buttons button {
-  background: white;
+  background: transparent;
   border: none;
   padding: 4px;
-  margin: 2px;
   border-radius: 6px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.lang-buttons button:hover {
-  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
 .search-form {
@@ -66,19 +59,19 @@ h1 {
 
 .search-form input,
 .search-form button {
-  padding: 12px;
+  padding: 14px;
   font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid #ccc;
   width: 100%;
+  border: 1px solid #ccc;
   box-sizing: border-box;
 }
 
 .search-form button {
   background-color: #007a33;
-  color: #fff;
+  color: white;
   border: none;
-  cursor: pointer;
+  font-weight: bold;
   transition: background-color 0.3s ease;
 }
 
@@ -91,7 +84,6 @@ h1 {
   font-weight: 500;
   text-align: center;
   margin-top: 15px;
-  font-size: 0.95rem;
 }
 
 .flight-info {
@@ -99,51 +91,46 @@ h1 {
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   background-color: #fafafa;
-  font-size: 0.95rem;
 }
 
 .flight-info h2 {
   margin-top: 0;
+  font-size: 1.2rem;
 }
 
-.custom-datepicker {
-  width: 100%;
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-}
-
-/* Статуси */
+/* Flight status colors */
 .status-landed { color: #007a33; font-weight: bold; }
 .status-delayed { color: #f0ad4e; font-weight: bold; }
 .status-boarding { color: #0275d8; font-weight: bold; }
 .status-cancelled { color: #d9534f; font-weight: bold; }
 
-/* ============================== */
-/* 🖥️ Десктоп: 1440px+ */
+
+/* === DESKTOP ≥1440px === */
 @media (min-width: 1440px) {
+  body {
+    padding: 40px;
+  }
+
   .container {
-    padding: 30px;
-    margin: 0 auto;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    padding: 32px;
   }
 
   h1 {
     font-size: 2rem;
   }
 
-  .search-form input,
-  .search-form button {
-    font-size: 1rem;
-  }
-
-  .flight-info {
-    font-size: 1rem;
-  }
-
   .lang-buttons {
     justify-content: flex-end;
+  }
+
+  .search-form input,
+  .search-form button {
+    font-size: 1.1rem;
+    padding: 16px;
+  }
+
+  .flight-info h2 {
+    font-size: 1.5rem;
   }
 }
