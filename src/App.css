@@ -101,6 +101,14 @@ h1 {
   margin-top: 0;
 }
 
+.custom-datepicker {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
 /* Статуси */
 .status-landed { color: #007a33; font-weight: bold; }
 .status-delayed { color: #f0ad4e; font-weight: bold; }

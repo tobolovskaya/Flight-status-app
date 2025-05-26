@@ -4,12 +4,20 @@ import { fetchFlightStatus } from './api/aviationAPI';
 import PlaneSpinner from './component/PlaneSpinner';
 import { useTranslation } from 'react-i18next';
 
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { registerLocale } from 'react-datepicker';
+import en from 'date-fns/locale/en-US';
+import no from 'date-fns/locale/nb';
+import ua from 'date-fns/locale/uk';
+
+registerLocale('en', en);
+registerLocale('no', no);
+registerLocale('ua', ua);
+
 function App() {
   const [flightNumberInput, setFlightNumberInput] = useState('');
-  const [dateInput, setDateInput] = useState(() => {
-    const today = new Date();
-    return today.toISOString().split('T')[0];
-  });
+  const [dateInput, setDateInput] = useState(new Date());
   const [foundFlight, setFoundFlight] = useState(null);
   const [searchMessage, setSearchMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -34,14 +42,16 @@ function App() {
       return;
     }
 
-    const result = await fetchFlightStatus(flightNumberInput, dateInput);
+    const formattedDate = dateInput.toISOString().split('T')[0];
+
+    const result = await fetchFlightStatus(flightNumberInput, formattedDate);
 
     if (result.found) {
       setFoundFlight(result.flight);
     } else {
       setSearchMessage(t('notFound', {
         number: flightNumberInput,
-        date: dateInput
+        date: formattedDate
       }));
     }
 
@@ -71,10 +81,12 @@ function App() {
           onChange={(e) => setFlightNumberInput(e.target.value.toUpperCase())}
           placeholder={t('placeholderFlight')}
         />
-        <input
-          type="date"
-          value={dateInput}
-          onChange={(e) => setDateInput(e.target.value)}
+        <DatePicker
+          selected={dateInput}
+          onChange={(date) => setDateInput(date)}
+          dateFormat="yyyy-MM-dd"
+          locale={i18n.language}
+          className="custom-datepicker"
         />
         <button onClick={handleSearch}>{t('button')}</button>
       </div>
