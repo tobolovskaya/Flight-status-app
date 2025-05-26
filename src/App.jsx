@@ -35,7 +35,10 @@ function App() {
     if (result.found) {
       setFoundFlight(result.flight);
     } else {
-      setSearchMessage(t('notFound', { number: flightNumberInput, date: dateInput }));
+      setSearchMessage(t('notFound', {
+        number: flightNumberInput,
+        date: dateInput
+      }));
     }
 
     setIsLoading(false);
@@ -48,7 +51,9 @@ function App() {
         <button onClick={() => changeLanguage('en')}>🇬🇧</button>
         <button onClick={() => changeLanguage('ua')}>🇺🇦</button>
       </div>
+
       <h1>{t('title')}</h1>
+
       <div className="search-form">
         <input
           type="text"
@@ -72,7 +77,7 @@ function App() {
         <div className="flight-info animate" key={foundFlight.flightNumber + foundFlight.date}>
           <h2>{t('flightInfo')}: {foundFlight.flightNumber}</h2>
           <p><strong>{t('status')}:</strong> <span className={`status-${foundFlight.status.toLowerCase().replace(/\s+/g, '-')}`}>
-            {t(`statusValues.${foundFlight.status.toLowerCase()}`)}
+            {t(`statusValues.${foundFlight.status.toLowerCase()}`, { defaultValue: foundFlight.status })}
           </span></p>
           <p><strong>{t('destination')}:</strong> {foundFlight.destination}</p>
           <p><strong>{t('gate')}:</strong> {foundFlight.gate}</p>
