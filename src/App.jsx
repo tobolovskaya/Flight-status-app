@@ -51,10 +51,16 @@ function App() {
   return (
     <div className="container">
       <div className="lang-buttons">
-        <button onClick={() => changeLanguage('no')}>🇳🇴</button>
-        <button onClick={() => changeLanguage('en')}>🇬🇧</button>
-        <button onClick={() => changeLanguage('ua')}>🇺🇦</button>
-      </div>
+  <button onClick={() => changeLanguage('no')}>
+    <img src="https://flagcdn.com/no.svg" alt="Norwegian" width="24" />
+  </button>
+  <button onClick={() => changeLanguage('en')}>
+    <img src="https://flagcdn.com/en.svg" alt="English" width="24" />
+  </button>
+  <button onClick={() => changeLanguage('ua')}>
+    <img src="https://flagcdn.com/ua.svg" alt="Ukrainian" width="24" />
+  </button>
+</div>
 
       <h1>{t('title')}</h1>
 

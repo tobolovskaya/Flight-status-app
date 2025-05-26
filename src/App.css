@@ -31,6 +31,20 @@ h1 {
   margin-bottom: 10px;
 }
 
+.lang-buttons button {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 6px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.lang-buttons button:hover {
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+
 .search-form {
   display: flex;
   flex-direction: column;
