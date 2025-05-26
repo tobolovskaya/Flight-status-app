@@ -12,9 +12,10 @@ export const fetchFlightStatus = async (flightNumber, date) => {
       return { found: false, reason: "Немає даних від API." };
     }
 
-    const filtered = data.data.find(
-      (f) => f.flight.iata === flightNumber && f.flight_date === date
-    );
+    const filtered = data.data.find((f) =>
+  f.flight.iata === flightNumber &&
+  f.flight_date.startsWith(date)
+);
 
     if (!filtered) {
       return {
