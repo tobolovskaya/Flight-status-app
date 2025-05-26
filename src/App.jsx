@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { flights } from './flightsData';
 import './App.css';
+import { fetchFlightStatus } from './api/aviationAPI';
+
 
 function App() {
   const [flightNumberInput, setFlightNumberInput] = useState('');
@@ -11,46 +13,23 @@ function App() {
   const [foundFlight, setFoundFlight] = useState(null);
   const [searchMessage, setSearchMessage] = useState('');
 
-  const handleSearch = () => {
-    setFoundFlight(null); // Скидання результату перед новим пошуком
+  const handleSearch = async () => {
+  setFoundFlight(null);
+  setSearchMessage('');
 
-    if (!flightNumberInput) {
-      setSearchMessage('Будь ласка, введіть номер рейсу.');
-      return;
-    }
+  if (!flightNumberInput) {
+    setSearchMessage('Будь ласка, введіть номер рейсу.');
+    return;
+  }
 
-    if (dateInput) {
-      const flight = flights.find(
-        (f) => f.flightNumber === flightNumberInput && f.date === dateInput
-      );
+  const result = await fetchFlightStatus(flightNumberInput, dateInput);
 
-      if (flight) {
-        setFoundFlight(flight);
-        setSearchMessage('');
-      } else {
-        setSearchMessage(`Рейс ${flightNumberInput} на дату ${dateInput} не знайдено.`);
-      }
-    } else {
-      const matchingFlights = flights.filter(
-        (f) => f.flightNumber === flightNumberInput
-      );
-
-      if (matchingFlights.length === 0) {
-        setSearchMessage(`Рейс ${flightNumberInput} не знайдено.`);
-      } else if (matchingFlights.length === 1) {
-        setFoundFlight(matchingFlights[0]);
-        setSearchMessage('');
-      } else {
-        const uniqueDates = [...new Set(matchingFlights.map(f => f.date))];
-        if (uniqueDates.length > 1) {
-          setSearchMessage(`Знайдено декілька рейсів ${flightNumberInput} на різні дати. Будь ласка, вкажіть дату для уточнення.`);
-        } else {
-          setFoundFlight(matchingFlights[0]);
-          setSearchMessage('');
-        }
-      }
-    }
-  };
+  if (result.found) {
+    setFoundFlight(result.flight);
+  } else {
+    setSearchMessage(result.reason);
+  }
+};
 
   return (
     <div className="container">
