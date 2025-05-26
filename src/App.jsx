@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import './App.css';
 import { fetchFlightStatus } from './api/aviationAPI';
-import { FaPlane } from 'react-icons/fa';
 import PlaneSpinner from './component/PlaneSpinner';
+import { useTranslation } from 'react-i18next';
 
 
 function App() {
@@ -14,6 +14,12 @@ function App() {
   const [foundFlight, setFoundFlight] = useState(null);
   const [searchMessage, setSearchMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const { t, i18n } = useTranslation();
+
+  const changeLanguage = (lang) => {
+  i18n.changeLanguage(lang);
+};
+
 
   const handleSearch = async () => {
     setFoundFlight(null);
@@ -39,20 +45,25 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Інформатор Статусу Рейсів</h1>
+      <div className="lang-buttons">
+  <button onClick={() => changeLanguage('ua')}>🇺🇦</button>
+  <button onClick={() => changeLanguage('no')}>🇳🇴</button>
+  <button onClick={() => changeLanguage('en')}>🇬🇧</button>
+</div>
+      <h1>{t('title')}</h1>
       <div className="search-form">
         <input
           type="text"
           value={flightNumberInput}
           onChange={(e) => setFlightNumberInput(e.target.value.toUpperCase())}
-          placeholder="Номер рейсу (напр. WF101)"
+          placeholder={t('placeholderFlight')}
         />
         <input
           type="date"
           value={dateInput}
           onChange={(e) => setDateInput(e.target.value)}
         />
-        <button onClick={handleSearch}>Знайти Рейс</button>
+        <button onClick={handleSearch}>{t('button')}</button>
       </div>
 
       {isLoading && <PlaneSpinner />}
