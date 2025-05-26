@@ -2,7 +2,7 @@ body {
   font-family: "Helvetica Neue", Arial, sans-serif;
   background-color: #f4f4f4;
   margin: 0;
-  padding: 20px;
+  padding: 16px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -11,24 +11,26 @@ body {
 
 .container {
   background-color: #ffffff;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-  max-width: 600px;
+  padding: 20px 16px;
+  border-radius: 10px;
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 h1 {
   color: #007a33;
   text-align: center;
   margin-bottom: 20px;
+  font-size: 1.6rem;
 }
 
 .lang-buttons {
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: 8px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 }
 
 .lang-buttons img {
@@ -55,7 +57,6 @@ h1 {
   box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
 }
 
-
 .search-form {
   display: flex;
   flex-direction: column;
@@ -69,6 +70,8 @@ h1 {
   font-size: 1rem;
   border-radius: 8px;
   border: 1px solid #ccc;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .search-form button {
@@ -80,7 +83,7 @@ h1 {
 }
 
 .search-form button:hover {
-  background-color: #000000;
+  background-color: #005c9d;
 }
 
 .message {
@@ -88,6 +91,7 @@ h1 {
   font-weight: 500;
   text-align: center;
   margin-top: 15px;
+  font-size: 0.95rem;
 }
 
 .flight-info {
@@ -95,6 +99,7 @@ h1 {
   border: 1px solid #e0e0e0;
   border-radius: 10px;
   background-color: #fafafa;
+  font-size: 0.95rem;
 }
 
 .flight-info h2 {
@@ -114,3 +119,31 @@ h1 {
 .status-delayed { color: #f0ad4e; font-weight: bold; }
 .status-boarding { color: #0275d8; font-weight: bold; }
 .status-cancelled { color: #d9534f; font-weight: bold; }
+
+/* ============================== */
+/* 🖥️ Десктоп: 1440px+ */
+@media (min-width: 1440px) {
+  .container {
+    padding: 30px;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .search-form input,
+  .search-form button {
+    font-size: 1rem;
+  }
+
+  .flight-info {
+    font-size: 1rem;
+  }
+
+  .lang-buttons {
+    justify-content: flex-end;
+  }
+}
