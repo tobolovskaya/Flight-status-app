@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './App.css';
 import { fetchFlightStatus } from './api/aviationAPI';
 import PlaneSpinner from './component/PlaneSpinner';
@@ -14,6 +14,10 @@ function App() {
   const [searchMessage, setSearchMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    document.title = t('title');
+  }, [t]);
 
   const changeLanguage = (lang) => {
     i18n.changeLanguage(lang);
